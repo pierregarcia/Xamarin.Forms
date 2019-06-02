@@ -5,15 +5,10 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
                Shell.FlyoutBehavior="Flyout"  
-               FlyoutHeaderBehavior="CollapseOnScroll"
+               FlyoutHeaderBehavior="Fixed"
                Shell.FlyoutBackgroundColor="Purple">
              
-  <Shell.FlyoutHeaderTemplate>
-        <DataTemplate>
-            <Image HeightRequest="300" MinimumHeightRequest="100"  BackgroundColor="Black" Source="xamarin_logo.png"></Image>
-        </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
-   
+ 
     <ShellContent Shell.FlyoutBehavior="Disabled" Title="Version of disorder">
         <ContentPage>
             <StackLayout>
