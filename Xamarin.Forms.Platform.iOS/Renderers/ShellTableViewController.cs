@@ -40,11 +40,17 @@ namespace Xamarin.Forms.Platform.iOS
 
 		public void LayoutParallax()
 		{
+
 			if (TableView?.Superview == null)
 				return;
 
 			var parent = TableView.Superview;
-			TableView.Frame = parent.Bounds.Inset(0, (float)SafeAreaOffset);
+
+			if(_headerView != null)
+				TableView.Frame =
+					new CGRect(0, SafeAreaOffset, parent.Bounds.Width, parent.Bounds.Height);
+			else
+				TableView.Frame = parent.Bounds;
 
 			if (_headerView != null)
 			{
@@ -71,8 +77,10 @@ namespace Xamarin.Forms.Platform.iOS
 			if (Forms.IsiOS11OrNewer)
 				TableView.ContentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.Never;
 
-			if(_headerView == null)
+			if(_headerView != null)
 				TableView.ContentInset = new UIEdgeInsets((nfloat)HeaderMax, 0, 0, 0);
+			else
+				TableView.ContentInset = new UIEdgeInsets((nfloat)SafeAreaOffset, 0, 0, 0);
 
 			TableView.Source = _source;
 		}
@@ -97,6 +105,9 @@ namespace Xamarin.Forms.Platform.iOS
 
 		void OnScrolled(object sender, UIScrollView e)
 		{
+			if (_headerView == null)
+				return;
+
 			var headerBehavior = _context.Shell.FlyoutHeaderBehavior;
 
 			switch (headerBehavior)
@@ -119,7 +130,7 @@ namespace Xamarin.Forms.Platform.iOS
 			LayoutParallax();
 		}
 
-		double SafeAreaOffset => _headerView.Margin.Top; //(float)Platform.SafeAreaInsetsForWindow.Top;
+		double SafeAreaOffset => _headerView?.Margin.Top ?? Platform.SafeAreaInsetsForWindow.Top;
 		double HeaderMax => _headerView?.MeasuredHeight ?? 0;
 	}
 }

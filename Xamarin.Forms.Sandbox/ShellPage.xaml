@@ -4,16 +4,17 @@
              x:Class="Xamarin.Forms.Sandbox.ShellPage"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true"
-       Shell.FlyoutBehavior="Flyout"    
-       Shell.FlyoutBackgroundColor="Purple">
+               Shell.FlyoutBehavior="Flyout"  
+               FlyoutHeaderBehavior="CollapseOnScroll"
+               Shell.FlyoutBackgroundColor="Purple">
              
-    <Shell.FlyoutHeaderTemplate>
+  <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Image Margin="0" HeightRequest="300" MinimumHeightRequest="100"  BackgroundColor="Black" Source="xamarin_logo.png"></Image>
+            <Image HeightRequest="300" MinimumHeightRequest="100"  BackgroundColor="Black" Source="xamarin_logo.png"></Image>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
-    
-    <ShellContent Title="Version of disorder">
+   
+    <ShellContent Shell.FlyoutBehavior="Disabled" Title="Version of disorder">
         <ContentPage>
             <StackLayout>
                 <Button Clicked="Handle_Clicked" Text="I am a Button"  />
@@ -57,4 +58,9 @@
     <MenuItem Text="some item"></MenuItem>
     <MenuItem Text="some item"></MenuItem>
     <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="bottom item"></MenuItem>
 </Shell>
