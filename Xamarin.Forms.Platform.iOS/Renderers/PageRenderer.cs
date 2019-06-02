@@ -5,6 +5,7 @@ using Foundation;
 using UIKit;
 using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 using PageUIStatusBarAnimation = Xamarin.Forms.PlatformConfiguration.iOSSpecific.UIStatusBarAnimation;
+using PageSpecific = Xamarin.Forms.PlatformConfiguration.iOSSpecific.Page;
 
 namespace Xamarin.Forms.Platform.iOS
 {
@@ -22,9 +23,8 @@ namespace Xamarin.Forms.Platform.iOS
 
 		Page Page => Element as Page;
 		IAccessibilityElementsController AccessibilityElementsController => this;
-
-		bool UsingSafeArea => (Forms.IsiOS11OrNewer) ? Page.On<PlatformConfiguration.iOS>().UsingSafeArea() : false;
 		Thickness SafeAreaInsets => Page.On<PlatformConfiguration.iOS>().SafeAreaInsets();
+		bool IsPartOfShell => (Element?.Parent is BaseShellItem);
 
 		public PageRenderer()
 		{
@@ -145,21 +145,30 @@ namespace Xamarin.Forms.Platform.iOS
 			if (Element.Parent is BaseShellItem)
 				Element.Layout(View.Bounds.ToRectangle());
 
-			UpdateShellInsetPadding();
+			UpdateUseSafeArea();
 		}
 
 		public override void ViewSafeAreaInsetsDidChange()
 		{
-			UpdateShellInsetPadding();
-			if (Page != null && Forms.IsiOS11OrNewer)
+			if(Page != null)
 			{
-				var insets = NativeView.SafeAreaInsets;
-				if (Page.Parent is TabbedPage)
+				if (Forms.IsiOS11OrNewer)
 				{
-					insets.Bottom = 0;
+					var insets = NativeView.SafeAreaInsets;
+					if (Page.Parent is TabbedPage)
+					{
+						insets.Bottom = 0;
+					}
+
+					Page.On<PlatformConfiguration.iOS>().SetSafeAreaInsets(new Thickness(insets.Left, insets.Top, insets.Right, insets.Bottom));
 				}
-				Page.On<PlatformConfiguration.iOS>().SetSafeAreaInsets(new Thickness(insets.Left, insets.Top, insets.Right, insets.Bottom));
+				else if(IsPartOfShell)
+				{
+					Page.On<PlatformConfiguration.iOS>().SetSafeAreaInsets(new Thickness(0, TopLayoutGuide.Length, 0, BottomLayoutGuide.Length));
+				}
 			}
+
+			UpdateUseSafeArea();
 
 			base.ViewSafeAreaInsetsDidChange();
 		}
@@ -330,7 +339,7 @@ namespace Xamarin.Forms.Platform.iOS
 			if (!Forms.IsiOS11OrNewer)
 				return;
 
-			if (!UsingSafeArea)
+			if (!UsingSafeArea())
 			{
 				var safeAreaInsets = SafeAreaInsets;
 				if (safeAreaInsets == Page.Padding)
@@ -342,27 +351,7 @@ namespace Xamarin.Forms.Platform.iOS
 			}
 		}
 
-		void UpdateShellInsetPadding()
-		{
-			if (!(Element?.Parent is ShellContent))
-				return;
-
-			nfloat topPadding = 0;
-			nfloat bottomPadding = 0;
-
-			if (Forms.IsiOS11OrNewer)
-			{
-				topPadding = View.SafeAreaInsets.Top;
-				bottomPadding = View.SafeAreaInsets.Bottom;
-			}
-			else
-			{
-				topPadding = TopLayoutGuide.Length;
-				bottomPadding = BottomLayoutGuide.Length;
-			}
-
-			Page.Padding = new Thickness(0, topPadding, 0, bottomPadding);
-		}
+	
 
 		void UpdateStatusBarPrefersHidden()
 		{
@@ -442,6 +431,19 @@ namespace Xamarin.Forms.Platform.iOS
 				return;
 
 			SetNeedsUpdateOfHomeIndicatorAutoHidden();
+		}
+
+		bool UsingSafeArea()
+		{
+			if (!(Forms.IsiOS11OrNewer) || Element == null)
+				return false;
+
+			if (!Element.IsSet(PageSpecific.UseSafeAreaProperty) && IsPartOfShell)
+			{
+				return true;
+			}
+
+			return Page.On<PlatformConfiguration.iOS>().UsingSafeArea();
 		}
 
 		public override bool PrefersHomeIndicatorAutoHidden => Page.OnThisPlatform().PrefersHomeIndicatorAutoHidden();

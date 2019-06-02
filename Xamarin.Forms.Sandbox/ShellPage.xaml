@@ -1,25 +1,60 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xamarin.Forms.Sandbox.ShellPage"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             ios:Page.UseSafeArea="true">
-
-    <Shell.FlyoutHeader>
-        <StackLayout>
-            <Button Text="I am a Button"  />
-        </StackLayout>
-    </Shell.FlyoutHeader>
-    <ShellContent>
+             ios:Page.UseSafeArea="true"
+       Shell.FlyoutBehavior="Flyout"    
+       Shell.FlyoutBackgroundColor="Purple">
+             
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Image Margin="0" HeightRequest="300" MinimumHeightRequest="100"  BackgroundColor="Black" Source="xamarin_logo.png"></Image>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+    
+    <ShellContent Title="Version of disorder">
         <ContentPage>
-            <Shell.TitleView>
-                <StackLayout>
-                    <Button Text="I am a Button"  />
-                </StackLayout>
-            </Shell.TitleView>
             <StackLayout>
-                <Button Text="I am a Button"  />
+                <Button Clicked="Handle_Clicked" Text="I am a Button"  />
             </StackLayout>
         </ContentPage>
     </ShellContent>
+    
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
+    <MenuItem Text="some item"></MenuItem>
 </Shell>

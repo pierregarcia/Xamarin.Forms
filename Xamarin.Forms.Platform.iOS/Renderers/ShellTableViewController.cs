@@ -44,7 +44,8 @@ namespace Xamarin.Forms.Platform.iOS
 				return;
 
 			var parent = TableView.Superview;
-			TableView.Frame = parent.Bounds.Inset(0, SafeAreaOffset);
+			TableView.Frame = parent.Bounds.Inset(0, (float)SafeAreaOffset);
+
 			if (_headerView != null)
 			{
 				_headerView.Frame = new CGRect(0, _headerOffset + SafeAreaOffset, parent.Frame.Width, _headerSize);
@@ -69,7 +70,10 @@ namespace Xamarin.Forms.Platform.iOS
 			TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
 			if (Forms.IsiOS11OrNewer)
 				TableView.ContentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentBehavior.Never;
-			TableView.ContentInset = new UIEdgeInsets((nfloat)HeaderMax, 0, 0, 0);
+
+			if(_headerView == null)
+				TableView.ContentInset = new UIEdgeInsets((nfloat)HeaderMax, 0, 0, 0);
+
 			TableView.Source = _source;
 		}
 
@@ -115,7 +119,7 @@ namespace Xamarin.Forms.Platform.iOS
 			LayoutParallax();
 		}
 
-		float SafeAreaOffset => (float)Platform.SafeAreaInsetsForWindow.Top;
+		double SafeAreaOffset => _headerView.Margin.Top; //(float)Platform.SafeAreaInsetsForWindow.Top;
 		double HeaderMax => _headerView?.MeasuredHeight ?? 0;
 	}
 }
