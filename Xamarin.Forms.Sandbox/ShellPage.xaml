@@ -17,17 +17,26 @@
     <FlyoutItem>
         <Tab>
             <ShellContent Shell.FlyoutBehavior="Disabled" Title="Tab 1">
-                <ContentPage Padding="0" >
-                    <StackLayout>
-                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
-                    </StackLayout>
+                <ContentPage  >
+                    <ScrollView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="70" />
+                        </Grid.RowDefinitions>
+                        <Label Text="I am a top"  />
+                        <Label Grid.Row="1"  Text="I am a Button"  />
+                        <Entry Grid.Row="2" />
+                    </Grid>
+                        </ScrollView>
                 </ContentPage>
             </ShellContent>
             <ShellContent Shell.FlyoutBehavior="Disabled" Title="Tab 2">
-                <ContentPage Padding="0" >
+                <ContentPage  >
                     <ScrollView>
                     <StackLayout>
-                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a top"  />
                         <Button Clicked="Handle_Clicked" Text="I am a Button"  />
                         <Button Clicked="Handle_Clicked" Text="I am a Button"  />
                         <Button Clicked="Handle_Clicked" Text="I am a Button"  />

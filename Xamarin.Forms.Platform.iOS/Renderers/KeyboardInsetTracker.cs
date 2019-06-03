@@ -14,6 +14,7 @@ namespace Xamarin.Forms.Platform.iOS
 		bool _disposed;
 
 		RectangleF _lastKeyboardRect;
+		UIEdgeInsets _previousInset;
 
 		public KeyboardInsetTracker(UIView targetView, Func<UIWindow> fetchWindow, Action<UIEdgeInsets> setInsetAction) : this(targetView, fetchWindow, setInsetAction, null)
 		{

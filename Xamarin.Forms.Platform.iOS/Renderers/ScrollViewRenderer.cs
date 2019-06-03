@@ -76,7 +76,11 @@ namespace Xamarin.Forms.Platform.iOS
 					_events = new EventTracker(this);
 					_events.LoadEvents(this);
 
-					_insetTracker = new KeyboardInsetTracker(this, () => Window, insets => ContentInset = ScrollIndicatorInsets = insets, point =>
+					_insetTracker = new KeyboardInsetTracker(
+						this, 
+						() => Window, 
+						insets => ContentInset = ScrollIndicatorInsets = insets, 
+						point =>
 					{
 						var offset = ContentOffset;
 						offset.Y += point.Y;
