@@ -3,19 +3,79 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xamarin.Forms.Sandbox.ShellPage"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-             ios:Page.UseSafeArea="true"
+             
                Shell.FlyoutBehavior="Flyout"  
                FlyoutHeaderBehavior="Fixed"
                Shell.FlyoutBackgroundColor="Purple">
              
- 
-    <ShellContent Shell.FlyoutBehavior="Disabled" Title="Version of disorder">
-        <ContentPage>
-            <StackLayout>
-                <Button Clicked="Handle_Clicked" Text="I am a Button"  />
-            </StackLayout>
-        </ContentPage>
-    </ShellContent>
+  <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Image Margin="0"  HeightRequest="300" MinimumHeightRequest="100"  BackgroundColor="Black" Source="xamarin_logo.png"></Image>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+   
+    <FlyoutItem>
+        <Tab>
+            <ShellContent Shell.FlyoutBehavior="Disabled" Title="Tab 1">
+                <ContentPage Padding="0" >
+                    <StackLayout>
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                    </StackLayout>
+                </ContentPage>
+            </ShellContent>
+            <ShellContent Shell.FlyoutBehavior="Disabled" Title="Tab 2">
+                <ContentPage Padding="0" >
+                    <ScrollView>
+                    <StackLayout>
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle2_Clicked" Text="I am a Better Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                        <Button Clicked="Handle_Clicked" Text="I am a Button"  />
+                    </StackLayout>
+                        </ScrollView>
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
     
     <MenuItem Text="some item"></MenuItem>
     <MenuItem Text="some item"></MenuItem>

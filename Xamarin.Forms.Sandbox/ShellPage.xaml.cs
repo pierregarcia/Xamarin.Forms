@@ -18,6 +18,7 @@ namespace Xamarin.Forms.Sandbox
 		{
 			var page = new ContentPage()
 			{
+				
 				Content = 
 
 				new ScrollView()
@@ -199,11 +200,60 @@ namespace Xamarin.Forms.Sandbox
 				}
 			};
 
-			Shell.SetNavBarIsVisible(page, false);
-			page.On<iOS>().SetUseSafeArea(false);
+			Shell.SetNavBarIsVisible(page, true);
+			page.Padding = 0;
 			await Navigation.PushAsync(page);
+		}
 
 
+
+		async void Handle2_Clicked(object sender, System.EventArgs e)
+		{
+			var page = new ContentPage()
+			{
+					Content = new StackLayout()
+					{
+						Children =
+						{
+							new Label()
+							{
+								Text = "top"
+							},
+							new Label()
+							{
+								Text = "test1"
+							},
+
+							new Label()
+							{
+								Text = "test1"
+							},
+
+							new Label()
+							{
+								Text = "test1"
+							},
+
+							new Label()
+							{
+								Text = "test1"
+							},
+
+							new Label()
+							{
+								Text = "test1"
+							},
+
+
+						}
+					}
+			};
+
+			Shell.SetBackgroundColor(page, Color.Purple);
+
+			Shell.SetNavBarIsVisible(page, true);
+			//page.Padding = 0;
+			await Navigation.PushAsync(page);
 		}
 
 		public ShellPage()
