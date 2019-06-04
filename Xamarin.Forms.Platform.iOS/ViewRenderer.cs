@@ -40,7 +40,7 @@ namespace Xamarin.Forms.Platform.MacOS
 		event EventHandler _controlChanging;
 		event EventHandler _controlChanged;
 
-
+		bool _isElementOrControlEmpty => (Element == null || Control == null);
 
 		protected virtual TNativeView CreateNativeControl()
 		{
@@ -195,7 +195,7 @@ namespace Xamarin.Forms.Platform.MacOS
 
 		protected override void SetBackgroundColor(Color color)
 		{
-			if (Control == null)
+			if (_isElementOrControlEmpty)
 				return;
 #if __MOBILE__
 			if (color == Color.Default)
@@ -224,8 +224,7 @@ namespace Xamarin.Forms.Platform.MacOS
 #endif
 			Control = uiview;
 
-			if (Element.BackgroundColor != Color.Default)
-				SetBackgroundColor(Element.BackgroundColor);
+			UpdateBackgroundColor();
 
 			UpdateIsEnabled();
 
@@ -243,9 +242,18 @@ namespace Xamarin.Forms.Platform.MacOS
 		}
 #endif
 
+		void UpdateBackgroundColor()
+		{
+			if (_isElementOrControlEmpty)
+				return;
+
+			if (Element.BackgroundColor != Color.Default)
+				SetBackgroundColor(Element.BackgroundColor);
+		}
+
 		void UpdateIsEnabled()
 		{
-			if (Element == null || Control == null)
+			if (_isElementOrControlEmpty)
 				return;
 
 			var uiControl = Control as NativeControl;
@@ -256,6 +264,9 @@ namespace Xamarin.Forms.Platform.MacOS
 
 		void UpdateFlowDirection()
 		{
+			if (_isElementOrControlEmpty)
+				return;
+
 			Control.UpdateFlowDirection(Element);
 		}
 
