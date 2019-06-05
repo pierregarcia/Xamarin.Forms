@@ -53,7 +53,7 @@ namespace Xamarin.Forms.Controls.Issues
 			return content2;
 		}
 
-#if UITEST
+#if UITEST && __IOS__
 		[Test]
 		public void Issue6368Test() 
 		{
